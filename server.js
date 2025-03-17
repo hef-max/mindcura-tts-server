@@ -21,11 +21,11 @@ const TMP_DIR = '/tmp';
 const isWindows = process.platform === "win32";
 // Gunakan path absolut untuk memastikan file dapat ditemukan
 const rhubarbPath = isWindows 
-    ? path.join(__filename, "bin", "rhubarb.exe") 
-    : path.join(__filename, "bin", "rhubarb");
+    ? path.join("rhubarb", "rhubarb.exe") 
+    : path.join("rhubarb", "rhubarb");
 const ffmpegPath = isWindows 
-    ? path.join(__filename, "ffmpeg", "bin", "ffmpeg.exe") 
-    : path.join(__filename, "ffmpeg", "bin", "ffmpeg");
+    ? path.join("ffmpeg", "bin", "ffmpeg.exe") 
+    : path.join("ffmpeg", "bin", "ffmpeg");
 
 // API clients
 const openai = new OpenAI({
