@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 // Path ke Rhubarb berdasarkan platform
 const isWindows = process.platform === "win32";
-const rhubarbPath = isWindows ? "bin\\rhubarb\\rhubarb.exe" : "bin/rhubarb/rhubarb";
+const rhubarbPath = isWindows ? "bin\\rhubarb.exe" : "bin/rhubarb";
 
 // API clients
 const openai = new OpenAI({
@@ -179,7 +179,7 @@ const generateLipsync = async (audioFilePath, outputFilePath) => {
     
     // Generate lipsync data
     await execCommand(
-      `rhubarb -f json -o ${outputFilePath} ${wavFilePath} -r phonetic`
+      `${rhubarbPath} -f json -o ${outputFilePath} ${wavFilePath} -r phonetic`
     );
     console.log(`Lip sync done in ${new Date().getTime() - time}ms`);
     
