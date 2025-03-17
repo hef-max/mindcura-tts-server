@@ -20,7 +20,9 @@ const TMP_DIR = '/tmp';
 // Path ke Rhubarb berdasarkan platform
 const isWindows = process.platform === "win32";
 const rhubarbPath = isWindows ? "bin\\rhubarb.exe" : "bin/rhubarb";
-const ffmpegPath = isWindows ? "ffmpeg\\bin\\ffmpeg.exe" : "ffmpeg/bin/ffmpeg";
+const ffmpegPath = isWindows 
+    ? path.join(__dirname, "ffmpeg", "bin", "ffmpeg.exe") 
+    : path.join(__dirname, "ffmpeg", "bin", "ffmpeg");
 
 // API clients
 const openai = new OpenAI({
