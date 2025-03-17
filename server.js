@@ -388,7 +388,7 @@ app.get("/audio/:id", async (req, res) => {
 });
 
 // Start server
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
   const separator = "=".repeat(80);
   console.log(separator);
   console.log(`MindCura TTS Server listening on port ${port}`);
