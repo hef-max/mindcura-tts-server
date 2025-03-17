@@ -14,6 +14,9 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Direktori temporary untuk file
+const TMP_DIR = '/tmp';
+
 // Path ke Rhubarb berdasarkan platform
 const isWindows = process.platform === "win32";
 const rhubarbPath = isWindows ? "bin\\rhubarb.exe" : "bin/rhubarb";
@@ -100,11 +103,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// Pastikan folder audios ada
+// Pastikan folder tmp ada
 try {
-  await fs.mkdir("audios", { recursive: true });
+  await fs.mkdir(TMP_DIR, { recursive: true });
 } catch (error) {
-  console.log("Audios directory already exists or error creating it:", error);
+  console.log("Temp directory already exists or error creating it:", error);
 }
 
 // Helper: Eksekusi command dengan Promise
@@ -324,12 +327,12 @@ app.post("/chat", async (req, res) => {
     console.log(`[${requestId}] Detected emotion: ${emotion}, animation: ${animation}`);
     
     // Step 3: Generate audio dengan ElevenLabs
-    const audioFilePath = `audios/message_${requestId}.mp3`;
+    const audioFilePath = `${TMP_DIR}/message_${requestId}.mp3`;
     console.log(`[${requestId}] Generating audio with ElevenLabs`);
     await textToSpeech(responseText, audioFilePath);
     
     // Step 4: Generate lipsync data
-    const lipsyncFilePath = `audios/message_${requestId}.json`;
+    const lipsyncFilePath = `${TMP_DIR}/message_${requestId}.json`;
     console.log(`[${requestId}] Generating lipsync data`);
     await generateLipsync(audioFilePath, lipsyncFilePath);
     
@@ -381,7 +384,7 @@ app.post("/chat", async (req, res) => {
 // Endpoint: Audio file (alternatif untuk transfer audio besar)
 app.get("/audio/:id", async (req, res) => {
   try {
-    const audioFile = path.resolve(`audios/message_${req.params.id}.mp3`);
+    const audioFile = path.resolve(`${TMP_DIR}/message_${req.params.id}.mp3`);
     res.sendFile(audioFile);
   } catch (error) {
     res.status(500).json({ error: "Error sending audio file" });
