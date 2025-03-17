@@ -17,6 +17,7 @@ const __dirname = path.dirname(__filename);
 // Path ke Rhubarb berdasarkan platform
 const isWindows = process.platform === "win32";
 const rhubarbPath = isWindows ? "bin\\rhubarb.exe" : "bin/rhubarb";
+const ffmpegPath = isWindows ? "ffmpeg\\bin\\ffmpeg.exe" : "ffmpeg/bin/ffmpeg";
 
 // API clients
 const openai = new OpenAI({
@@ -173,7 +174,7 @@ const generateLipsync = async (audioFilePath, outputFilePath) => {
     // Convert mp3 to wav
     const wavFilePath = audioFilePath.replace('.mp3', '.wav');
     await execCommand(
-      `ffmpeg -y -i ${audioFilePath} ${wavFilePath}`
+      `${ffmpegPath} -y -i ${audioFilePath} ${wavFilePath}`
     );
     console.log(`Conversion done in ${new Date().getTime() - time}ms`);
     
