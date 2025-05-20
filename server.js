@@ -33,8 +33,8 @@ const openai = new OpenAI({
 });
 
 // Configuration
-const elevenLabsApiKey = process.env.ELEVENLABS_API_KEY;
-const voiceID = process.env.ELEVENLABS_VOICE_ID; 
+const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
+const voiceID = process.env.VOICE_ID || "your-voice-id"; 
 const port = process.env.PORT || 3000;
 
 // Setup Express
