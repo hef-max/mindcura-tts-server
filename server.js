@@ -34,7 +34,7 @@ const openai = new OpenAI({
 
 // Configuration
 const elevenLabsApiKey = process.env.ELEVENLABS_API_KEY;
-const voiceID = process.env.ELEVENLABS_VOICE_ID || "your-voice-id"; 
+const voiceID = process.env.ELEVENLABS_VOICE_ID; 
 const port = process.env.PORT || 3000;
 
 // Setup Express
@@ -276,7 +276,7 @@ app.get("/test", (req, res) => {
     config: {
       openai_key_set: !!process.env.OPENAI_API_KEY,
       elevenlabs_key_set: !!elevenLabsApiKey,
-      voice_id: voiceID,
+      voice_id: !!voiceID,
       rhubarb_path: rhubarbPath
     }
   });
