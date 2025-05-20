@@ -20,12 +20,16 @@ const TMP_DIR = '/tmp';
 // Path ke Rhubarb berdasarkan platform
 const isWindows = process.platform === "win32";
 // Gunakan path absolut untuk memastikan file dapat ditemukan
-const rhubarbPath = isWindows 
-    ? path.join("rhubarb", "rhubarb.exe") 
-    : path.join("rhubarb", "rhubarb");
-const ffmpegPath = isWindows 
-    ? path.join("ffmpeg", "bin", "ffmpeg.exe") 
-    : path.join("ffmpeg", "bin", "ffmpeg");
+// const rhubarbPath = isWindows 
+    // ? path.join("rhubarb", "rhubarb.exe") 
+    // : path.join("rhubarb", "rhubarb");
+
+const rhubarbPath = isWindows ? "rhubarb\\rhubarb.exe" : "rhubarb/rhubarb";
+const ffmpegPath = isWindows ? "ffmpeg\\bin\\ffmpeg.exe" : "ffmpeg/bin/ffmpeg";
+
+// const ffmpegPath = isWindows 
+//     ? path.join("ffmpeg", "bin", "ffmpeg.exe") 
+//     : path.join("ffmpeg", "bin", "ffmpeg");
 
 // API clients
 const openai = new OpenAI({
@@ -313,7 +317,7 @@ app.post("/chat", async (req, res) => {
           asisten virtual yang ramah dan empatik, fokus mendukung kesehatan mental secara ilmiah.
           Kamu menggunakan pendekatan terapi kognitif perilaku (CBT) untuk membantu pengguna melihat pikiran secara lebih rasional.
           Berikan respons yang sangat singkat: maksimal 2–3 kalimat pendek, setara 1–2 baris.
-          Gunakan kalimat sederhana, hindari penjelasan panjang atau bahasa teknis.
+          Gunakan kalimat sederhana, hindari penjelasan panjang atau bahasa teknis, dan dengan bahasa Indonesia.
           `
         },
         {
