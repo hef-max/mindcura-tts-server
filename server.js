@@ -24,8 +24,8 @@ const isWindows = process.platform === "win32";
     // ? path.join("rhubarb", "rhubarb.exe") 
     // : path.join("rhubarb", "rhubarb");
 
-const rhubarbPath = isWindows ? "rhubarb\\rhubarb.exe" : "rhubarb/rhubarb";
 const ffmpegPath = isWindows ? "ffmpeg\\bin\\ffmpeg.exe" : "ffmpeg/bin/ffmpeg";
+const rhubarbPath = isWindows ? "rhubarb\\rhubarb.exe" : "rhubarb/rhubarb";
 
 // const ffmpegPath = isWindows 
 //     ? path.join("ffmpeg", "bin", "ffmpeg.exe") 
